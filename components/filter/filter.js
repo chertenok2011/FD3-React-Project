@@ -23,7 +23,6 @@ class Filter extends React.PureComponent {
         defaultFilter: this.props.products
     }
 
-
     filter = (EO) => {
         var defaultFilter = this.state.defaultFilter.slice();
         var filter = EO.target.value;
