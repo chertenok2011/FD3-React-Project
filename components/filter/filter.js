@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import './filter.less';
 
 class Filter extends React.PureComponent {
-
     static propTypes = {
         products: PropTypes.arrayOf(
             PropTypes.shape({
@@ -20,15 +19,16 @@ class Filter extends React.PureComponent {
     }
 
     state = {
+        products: this.props.products,
         defaultFilter: this.props.products
     }
 
     filter = (EO) => {
-        var defaultFilter = this.state.defaultFilter.slice();
+        var defFilter = this.state.defaultFilter.slice();
         var filter = EO.target.value;
         var filterList = [];
         if (filter) {
-            defaultFilter.forEach(function (item) {
+            defFilter.forEach(function (item) {
                 if (item.name.toLowerCase().indexOf(filter) != -1) {
                     filterList.push({
                         name: item.name,
@@ -49,9 +49,12 @@ class Filter extends React.PureComponent {
 
     render() {
         return (
-            <input className='search form-control' placeholder='Введите название модели' onChange={this.filter} />
+            <p>
+                <span>Поиск:</span>
+                <input className='search form-control' placeholder='Введите название модели' onChange={this.filter} />
+            </p>
         )
     }
-}
+};
 
 export default Filter;

@@ -1,30 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Bootstrap from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 import './product.less';
 
 class Product extends React.PureComponent {
-
     static propTypes = {
         code: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         url: PropTypes.string,
         count: PropTypes.number,
         description: PropTypes.string.isRequired,
-        remainder: PropTypes.number,
-        //workMode: PropTypes.number.isRequired,
-        //cbEditItem: PropTypes.func.isRequired,
-        //cbDeletedItem: PropTypes.func.isRequired
+        remainder: PropTypes.number
     }
-
-    // editItem = (EO) => {
-    //     this.props.cbEditItem(this.props.code, this.props.name, this.props.url, this.props.description, this.props.count, this.props.remainder);
-    // }
-
-    // deleteItem = (EO) => {
-    //     this.props.cbDeletedItem(this.props.code);
-    // }
 
     render() {
         return (
@@ -51,8 +40,8 @@ class Product extends React.PureComponent {
                         </p>
                     </div>
                     <div className='product-buttons'>
-                        <button className='button btn' onClick={this.detailsItem}>Подробнее</button>
-                        <button className='button btn ' onClick={this.addCart}>В корзину</button>
+                        <NavLink to={"/product/" + this.props.code} className='button btn'>Подробнее</NavLink>
+                        <Button className='button btn ' onClick={this.addCart}>В корзину</Button>
                     </div>
                 </div>
             </div>

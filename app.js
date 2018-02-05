@@ -1,12 +1,16 @@
-"use strict"
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Bootstrap from 'react-bootstrap';
+import { BrowserRouter } from 'react-router-dom';
 
-import Main from './components/main/main';
+import PageHeader from './pages/pageHeader';
+import PagesRouter from './pages/pagesRouter';
 
 ReactDOM.render(
-    <Main />,
+    <BrowserRouter>
+        <div className="main-container">
+            <PageHeader />
+            <PagesRouter />
+        </div>
+    </BrowserRouter>,
     document.getElementById('wrapper')
 );

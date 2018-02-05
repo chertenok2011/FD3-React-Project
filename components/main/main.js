@@ -8,54 +8,46 @@ import './main.less';
 import Products from '../products/products';
 import Filter from '../filter/filter';
 
-var defCounter = 1;
-var listArr = require('../../products.json');
-
-for (var i = 0; i < listArr.length; i++) {
-    listArr[i].code = defCounter++
-}
-
 class Main extends React.PureComponent {
 
+    static propTypes = {
+        products: PropTypes.arrayOf(
+            PropTypes.shape({
+                name: PropTypes.string.isRequired,
+                url: PropTypes.string,
+                code: PropTypes.number.isRequired,
+                count: PropTypes.number,
+                description: PropTypes.string.isRequired,
+                remainder: PropTypes.number
+            })
+        ),
+        defCounter: PropTypes.number.isRequired
+    };
+
     state = {
-        listProducts: listArr,
-        defCounter: defCounter
+        products: this.props.products,
+        defCounter: this.props.defCounter
     }
 
     filter = (filterList) => {
-        this.setState({ listProducts: filterList });
+        this.state.products = filterList;
+        this.setState({ products: this.state.products.slice() }, console.log(this.state.products));
     }
 
     render() {
-
         return (
-            <div className="main-container">
-                <header>
-                    <div className='header-wrapper'>
-                        <div className='header-wrapper-title'>
-                            <h3>Ноутбуки и ультрабуки Lenovo</h3>
-                        </div>
-                        <div className="header-wrapper-cart btn-group">
-                            <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown">Корзина <span className="caret"></span></button>
-                            <div className="dropdown-menu" role="menu">
-
-                            </div>
-                        </div>
-                        <div className='header-wrapper-search'>
-                            <Filter products={this.state.listProducts} cbFilter={this.filter} />
-                        </div>
+            <div className='main-wrapper'>
+                <main>
+                    <div className='image-container'>
+                        <img src='../../images/yoga-910-gold-898x793.png' />
                     </div>
-                </header>
-                <div className='main-wrapper'>
-                    <main>
-                        <div className='image-container'>
-                            <img src='../../images/yoga-910-gold-898x793.png' />
-                        </div>
-                        <div className='products-container'>
-                            <Products products={this.state.listProducts} startWorkMode={0} defCounter={this.state.defCounter} />
-                        </div>
-                    </main>
-                </div>
+                    <div className='search-container'>
+                        <Filter products={this.state.products} cbFilter={this.filter} />
+                    </div>
+                    <div className='products-container'>
+                        <Products products={this.state.products} defCounter={this.state.defCounter} />
+                    </div>
+                </main>
             </div>
         );
     }
