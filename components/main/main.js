@@ -9,7 +9,6 @@ import Products from '../products/products';
 import Filter from '../filter/filter';
 
 class Main extends React.PureComponent {
-
     static propTypes = {
         products: PropTypes.arrayOf(
             PropTypes.shape({

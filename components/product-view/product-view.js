@@ -50,8 +50,7 @@ class ProductView extends React.PureComponent {
                                     </p>
                                 </div>
                                 <div className='product-buttons'>
-                                    <Button className='button btn' onCkick={this.editItem}>Редактировать</Button>
-                                    <Button className='button btn' onClick={this.addCart}>В корзину</Button>
+                                    <button className='button btn' onClick={this.addCart}>В корзину</button>
                                 </div>
                             </div>
                         </div>
