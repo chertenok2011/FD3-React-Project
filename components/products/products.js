@@ -21,13 +21,8 @@ class Products extends React.PureComponent {
         defCounter: PropTypes.number.isRequired
     };
 
-    state = {
-        products: this.props.products,
-        counter: this.props.defCounter
-    };
-
     render() {
-        var productsMas = this.state.products.map(v =>
+        var productsMas = this.props.products.map(v =>
             <Product
                 key={v.code}
                 code={v.code}

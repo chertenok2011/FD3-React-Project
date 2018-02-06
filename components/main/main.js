@@ -24,13 +24,16 @@ class Main extends React.PureComponent {
     };
 
     state = {
-        products: this.props.products,
-        defCounter: this.props.defCounter
+        stateProducts: this.props.products,
+        defCounter: this.props.defCounter,
+        filter: ''
     }
 
-    filter = (filterList) => {
-        this.state.products = filterList;
-        this.setState({ products: this.state.products.slice() }, console.log(this.state.products));
+    filter = (filterList, filter) => {
+        this.setState({
+            stateProducts: filterList.slice(),
+            filter: filter
+        });
     }
 
     render() {
@@ -41,10 +44,17 @@ class Main extends React.PureComponent {
                         <img src='../../images/yoga-910-gold-898x793.png' />
                     </div>
                     <div className='search-container'>
-                        <Filter products={this.state.products} cbFilter={this.filter} />
+                        <Filter products={this.state.stateProducts} cbFilter={this.filter} />
                     </div>
                     <div className='products-container'>
-                        <Products products={this.state.products} defCounter={this.state.defCounter} />
+                        {
+                            (this.state.stateProducts != 0) &&
+                            <Products products={this.state.stateProducts} defCounter={this.state.defCounter} />
+                        }
+                        {
+                            (this.state.stateProducts == 0) &&
+                            <div className='products-not-found'>Не найдены продукты с название "{this.state.filter}"</div>
+                        }
                     </div>
                 </main>
             </div>

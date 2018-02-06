@@ -40,10 +40,9 @@ class Filter extends React.PureComponent {
                     });
                 }
             });
-            this.props.cbFilter(filterList);
+            this.props.cbFilter(filterList, filter);
         } else {
-            filterList = defaultFilter.slice();
-            this.props.cbFilter(filterList);
+            this.props.cbFilter(defFilter, filter);
         }
     }
 
