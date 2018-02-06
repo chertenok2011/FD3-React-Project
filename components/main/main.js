@@ -20,13 +20,15 @@ class Main extends React.PureComponent {
                 remainder: PropTypes.number
             })
         ),
-        defCounter: PropTypes.number.isRequired
+        defCounter: PropTypes.number.isRequired,
+        card: PropTypes.array.isRequired
     };
 
     state = {
         stateProducts: this.props.products,
         defCounter: this.props.defCounter,
-        filter: ''
+        filter: '',
+        card: this.props.card
     }
 
     filter = (filterList, filter) => {
@@ -34,6 +36,11 @@ class Main extends React.PureComponent {
             stateProducts: filterList.slice(),
             filter: filter
         });
+    }
+
+    card = (product) => {
+        console.log(product);
+
     }
 
     render() {
@@ -49,7 +56,7 @@ class Main extends React.PureComponent {
                     <div className='products-container'>
                         {
                             (this.state.stateProducts != 0) &&
-                            <Products products={this.state.stateProducts} defCounter={this.state.defCounter} />
+                            <Products products={this.state.stateProducts} defCounter={this.state.defCounter} cbCard={this.card}/>
                         }
                         {
                             (this.state.stateProducts == 0) &&

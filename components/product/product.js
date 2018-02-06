@@ -12,7 +12,12 @@ class Product extends React.PureComponent {
         url: PropTypes.string,
         count: PropTypes.number,
         description: PropTypes.string.isRequired,
-        remainder: PropTypes.number
+        remainder: PropTypes.number,
+        cbAddCard: PropTypes.func.isRequired
+    }
+
+    addCart = () => {
+        this.props.cbAddCard(this.props.code);
     }
 
     render() {

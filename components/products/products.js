@@ -18,8 +18,20 @@ class Products extends React.PureComponent {
                 remainder: PropTypes.number
             })
         ),
-        defCounter: PropTypes.number.isRequired
+        defCounter: PropTypes.number.isRequired,
+        cbCard: PropTypes.func.isRequired
     };
+
+    addCard = (code) => {
+        let cardProduct = [];
+        this.props.products.forEach(function(item) {
+            if (item.code == code) {
+                cardProduct.push(item);
+            }
+        });
+        this.props.cbCard(cardProduct)
+        //console.log(cardProduct);
+    }
 
     render() {
         var productsMas = this.props.products.map(v =>
@@ -31,6 +43,7 @@ class Products extends React.PureComponent {
                 count={v.count}
                 description={v.description}
                 remainder={v.remainder}
+                cbAddCard={this.addCard}
             />
         );
 
